@@ -1,4 +1,4 @@
-package sia.tacocloud;
+package sia.tacocloud.tacos;
 import lombok.Data;
 @Data
 public class Ingredient {

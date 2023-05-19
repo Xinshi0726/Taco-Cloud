@@ -1,6 +1,9 @@
-package sia.tacocloud;
+package sia.tacocloud.tacos;
+import java.util.Date;
 import java.util.List;
 import lombok.Data;
+import sia.tacocloud.tacos.Ingredient;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 @Data
@@ -10,5 +13,7 @@ public class Taco {
     private String name;
     @NotNull
     @Size(min = 1, message = "You must choose at least 1 ingredient")
-    private List<Ingredient> ingredients;
+    private List<IngredientRef> ingredients;
+    private Long id;
+    private Date createdAt = new Date();
 }

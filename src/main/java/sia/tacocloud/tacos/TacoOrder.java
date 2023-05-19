@@ -1,8 +1,12 @@
-package sia.tacocloud;
+package sia.tacocloud.tacos;
 import lombok.Data;
+
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import org.hibernate.validator.constraints.CreditCardNumber;
+import sia.tacocloud.tacos.Taco;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -35,6 +39,9 @@ public class TacoOrder {
 
     private List<Taco> tacos = new ArrayList<>();
 
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private Date PlacedAt;
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
     }
