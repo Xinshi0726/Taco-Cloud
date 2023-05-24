@@ -1,11 +1,10 @@
 package sia.tacocloud.sql;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import sia.tacocloud.tacos.Ingredient;
 
@@ -31,8 +30,8 @@ public class JdbcIngredientRepository implements IngredientRepository{
      }
 
     @Override
-    public Ingredient findById(String id) {
-        return jdbcTemplate.queryForObject("SELECT id,name,type FROM Ingredient WHERE id = ?", this::mapRowToIngredient, id);
+    public Optional<Ingredient> findById(String id) {
+        return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT id,name,type FROM Ingredient WHERE id = ?", this::mapRowToIngredient, id));
     }
 
     @Override
