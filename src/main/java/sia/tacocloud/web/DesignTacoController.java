@@ -11,11 +11,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
+import sia.tacocloud.sql.IngredientRepository;
 import sia.tacocloud.tacos.Ingredient;
 import sia.tacocloud.tacos.Ingredient.Type;
 import sia.tacocloud.tacos.Taco;
 import sia.tacocloud.tacos.TacoOrder;
-import sia.tacocloud.sql.JdbcIngredientRepository;
 
 import javax.validation.Valid;
 
@@ -26,11 +26,11 @@ import javax.validation.Valid;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 
-    private JdbcIngredientRepository jdbcIngredientRepository;
+    private IngredientRepository ingredientRepository;
 
     @Autowired
-    public DesignTacoController(JdbcIngredientRepository jdbcIngredientRepository) {
-        this.jdbcIngredientRepository = jdbcIngredientRepository;
+    public DesignTacoController(IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
     }
 
     private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type){
@@ -38,8 +38,7 @@ public class DesignTacoController {
     }
     @ModelAttribute
     public void addIngredientsToModel(Model model){
-        JdbcIngredientRepository a = new JdbcIngredientRepository(new JdbcTemplate());
-        Iterable<Ingredient> ingredients = this.jdbcIngredientRepository.findAll();
+        Iterable<Ingredient> ingredients = this.ingredientRepository.findAll();
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),filterByType((List<Ingredient>) ingredients, type));
