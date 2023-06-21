@@ -1,9 +1,10 @@
 package sia.tacocloud.sql;
-import sia.tacocloud.tacos.Ingredient;
+import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.CrudRepository;
 import sia.tacocloud.tacos.Ingredient;
-import java.util.Optional;
 
+import java.util.Optional;
+@Repository
 public interface IngredientRepository extends CrudRepository<Ingredient, String>{
     Iterable<Ingredient> findAll();
 

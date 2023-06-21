@@ -1,4 +1,4 @@
-package sia.tacocloud.tacos.security;
+package sia.tacocloud.security;
 
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;

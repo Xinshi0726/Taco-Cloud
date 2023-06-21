@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -26,7 +25,7 @@ import javax.validation.Valid;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 
-    private IngredientRepository ingredientRepository;
+    private final IngredientRepository ingredientRepository;
 
     @Autowired
     public DesignTacoController(IngredientRepository ingredientRepository) {
@@ -61,13 +60,8 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processTaco(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder)
+    public String processTaco(Taco taco,@ModelAttribute TacoOrder tacoOrder)
     {
-        if (errors.hasErrors())
-        {
-            return "design";
-        }
-
         tacoOrder.addTaco(taco);
         log.info("Processing taco: {}",taco);
 

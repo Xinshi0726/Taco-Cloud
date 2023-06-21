@@ -1,4 +1,4 @@
-package sia.tacocloud.tacos.security;
+package sia.tacocloud.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,12 +31,11 @@ public class SecurityConfig {
         return http
                 .authorizeRequests()
                 .antMatchers("/design","/orders").access("hasRole('USER')")
+                .antMatchers("/h2-console/**").access("permitAll()")
                 .antMatchers("/","/**").access("permitAll()")
-
+                .antMatchers("/**/**").access("permitAll()")
                 .and()
                 .formLogin()
-                .loginPage("/login")
-
                 .and()
                 .build();
     }
