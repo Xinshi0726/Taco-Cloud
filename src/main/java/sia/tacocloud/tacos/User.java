@@ -14,24 +14,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Data
-@NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
+@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
 @RequiredArgsConstructor
-public class UserInfo implements UserDetails {
+public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     private final String username;
-    private final String password1;
+    private final String password;
     private final String fullname;
     private final String street;
     private final String city;
     private final String state;
     private final String zip;
-    private final String phone;
+    private final String phoneNumber;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
@@ -57,6 +58,5 @@ public class UserInfo implements UserDetails {
         return true;
     }
 
-    @Override
-    public String getPassword() {return this.password1;}
 }
+

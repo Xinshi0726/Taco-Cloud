@@ -6,7 +6,7 @@ import sia.tacocloud.tacos.Ingredient;
 import org.springframework.data.repository.CrudRepository;
 
 @Repository
-public interface OrderRepository extends CrudRepository<Ingredient,String>{
+public interface OrderRepository extends CrudRepository<TacoOrder,Long>{
     TacoOrder save(TacoOrder order);
 }
 
