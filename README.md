@@ -5,4 +5,5 @@ So far, this project has completed:\
 1.Basic Web Controllers\
 2.Spring Data JDBC/Spring Data JPA\
 3.Spring Security\
-4.RESTful Controller
+4.RESTful Controller\
+5.Asynchronized Messaging
