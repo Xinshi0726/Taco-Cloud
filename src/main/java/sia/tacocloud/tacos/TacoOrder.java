@@ -50,7 +50,7 @@ public class TacoOrder implements Serializable {
 
     @ManyToOne
     private User user;
-    private Date PlacedAt = new Date();
+    private Date placedAt = new Date();
     public void addTaco(Taco taco) {
         this.tacos.add(taco);
     }
